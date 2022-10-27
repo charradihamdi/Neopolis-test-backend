@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb://localhost/ecommerce",
+    "mongodb://localhost/events",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
