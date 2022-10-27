@@ -4,7 +4,9 @@ const multer = require("multer");
 const upload = multer();
 
 // auth
-router.post("/addevents", eventsController.addEvent);
-router.get("/getevents",upload.single("file"), eventsController.getAllEvents);
+router.post("/add", eventsController.addEvent);
 router.get("/:id", eventsController.eventInfo);
+router.put("/:id/edit", eventsController.edit);
+router.delete("/:id", eventsController.delete);
+router.get("", upload.single("file"), eventsController.getAllEvents);
 module.exports = router;

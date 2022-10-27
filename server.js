@@ -3,25 +3,25 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const userRoutes = require('./routes/user.routes');
 const eventsRoutes = require('./routes/event.routes');
-require('dotenv').config({path: './config/.env'});
+require('dotenv').config({ path: './config/.env' });
 require('./config/db');
-const {checkUser, requireAuth,adminMiddleware} = require('./middleware/auth.middleware');
+const { checkUser, requireAuth, adminMiddleware } = require('./middleware/auth.middleware');
 const cors = require('cors');
 
 const app = express();
 
 const corsOptions = {
-  origin: [process.env.CLIENT_URL,process.env.ADMIN_URL],
+  origin: [process.env.CLIENT_URL, process.env.ADMIN_URL],
   credentials: true,
   'allowedHeaders': ['sessionId', 'Content-Type'],
-  'exposedHeaders': ['sessionId'],
+  // 'exposedHeaders': ['sessionId'],
   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  'preflightContinue': false
+  // 'preflightContinue': false
 }
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // jwt
@@ -32,7 +32,7 @@ app.get('/jwtid', requireAuth, (req, res) => {
 
 // routes
 app.use('/api/user', userRoutes);
-app.use('/api/events',eventsRoutes)
+app.use('/api/events', eventsRoutes)
 
 // server
 app.listen(process.env.PORT, () => {
