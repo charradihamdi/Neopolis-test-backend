@@ -11,6 +11,10 @@ Modules
  
  
  *get details of event after click in the event icon
+ 
+  _____________________________
+  
+  
  -Auth ->login{addEvents(picture,position,title...)/update/delete}
        ->signUp
        
